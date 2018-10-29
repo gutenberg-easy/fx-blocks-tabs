@@ -30,6 +30,9 @@ function setup() {
 
 	// Editor Assets.
 	add_action( 'enqueue_block_editor_assets', $n( 'editor_assets' ) );
+
+	// Block Assets.
+	add_action( 'enqueue_block_assets', $n( 'block_assets' ) );
 }
 
 /**
@@ -67,17 +70,42 @@ function register_blocks() {
 function editor_assets() {
 	// JS.
 	wp_enqueue_script(
-		'my-blocks-editor',
+		'fx-blocks-tabs-editor',
 		FX_BLOCKS_TABS_URL . 'assets/js/editor.blocks.js',
 		[ 'wp-i18n', 'wp-element', 'wp-blocks', 'wp-components', 'jquery' ],
-		FX_BLOCKS_TABS_VERSION
+		// FX_BLOCKS_TABS_VERSION
+		time()
 	);
 
 	// CSS.
 	wp_enqueue_style(
-		'my-blocks-editor',
+		'fx-blocks-tabs-editor',
 		FX_BLOCKS_TABS_URL . 'assets/css/blocks.editor.css',
 		[ 'wp-components' ],
-		FX_BLOCKS_TABS_VERSION
+		// FX_BLOCKS_TABS_VERSION
+		time()
+	);
+}
+
+/**
+ * Block Assets
+ *
+ * @return void
+ */
+function block_assets() {
+	wp_enqueue_script(
+		'fx-blocks-tabs',
+		FX_BLOCKS_TABS_URL . 'assets/js/frontend.blocks.js',
+		[ 'wp-i18n', 'wp-element', 'wp-blocks', 'wp-components', 'jquery' ],
+		// FX_BLOCKS_TABS_VERSION
+		time()
+	);
+
+	wp_enqueue_style(
+		'fx-blocks-tabs',
+		FX_BLOCKS_TABS_URL . 'assets/css/blocks.style.css',
+		[ 'wp-blocks' ],
+		// FX_BLOCKS_TABS_VERSION
+		time()
 	);
 }
