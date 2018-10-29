@@ -24,6 +24,3 @@ require_once FX_BLOCKS_TABS_INC . 'functions/core.php';
 
 // Bootstrap.
 add_action( 'plugins_loaded', '\FxBlocksTabs\Core\setup' );
-
-ccdd( dirname( __FILE__ ), 'dirname' );
-ccdd( plugin_dir_path( __FILE__ ), 'plugin_dir_path' );
