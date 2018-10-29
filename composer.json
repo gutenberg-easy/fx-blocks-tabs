@@ -1,0 +1,26 @@
+{
+  "name": "turtlepod/fx-blocks-tabs",
+  "description": "Simple blocks plugin",
+  "authors": [
+    {
+      "name": "Author",
+      "email": "david.chandra@10up.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "FxBlocksTabs\\": "includes/classes/"
+    }
+  },
+  "require-dev": {
+    "10up/wp_mock": "dev-dev",
+    "10up/phpcs-composer": "dev-master"
+  },
+  "scripts": {
+    "lint": "phpcs .",
+    "lint-fix": "phpcbf ."
+  }
+}
