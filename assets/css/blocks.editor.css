@@ -1,0 +1,96 @@
+.my-blocks-ajax .editor-rich-text__inline-toolbar {
+  z-index: 99 !important;
+  left: 50px;
+  right: 50px; }
+
+.my-blocks-ajax .editor-format-toolbar {
+  z-index: 99 !important; }
+/**
+ * SortableList component editor styles
+ *
+ * CSS just for the backend, enqueued after style.scss.
+ *
+ * @since 1.0.0
+ * @package JDRFGutenberg
+ */
+.sortable-list {
+  padding: 12px 0 8px; }
+
+.sortable-list-items {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important; }
+
+.sortable-list-item {
+  background-color: #fff;
+  display: block;
+  position: relative;
+  width: 100%;
+  z-index: 10; }
+  .sortable-list-item.sortable-list-item-dragging {
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 3px 30px rgba(25, 30, 35, 0.2); }
+
+.sortable-list-handle {
+  background: #fff;
+  z-index: 11;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -ms-flex-align: end;
+      align-items: flex-end;
+  margin: 0;
+  padding: 3px;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  width: 36px;
+  height: 36px;
+  top: 2px; }
+  .sortable-list-handle svg {
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%) translateY(-50%); }
+
+.sortable-list-item-toolbar {
+  background: #fff;
+  border: 1px solid #e3e5e8;
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translateY(calc( -100% + 1px));
+  z-index: 11;
+  height: 40px; }
+  .sortable-list-item:hover .sortable-list-item-toolbar {
+    display: block; }
+  .sortable-list-item-toolbar button {
+    top: -4px; }
+
+.sortable-list-item-wrap {
+  border: 1px solid #e2e4e7;
+  padding: 7px 7px 0 7px;
+  border-radius: 3px;
+  margin-bottom: 10px; }
+
+.sortable-list-button-add-item {
+  border-radius: 50%;
+  margin: 0 auto -12px;
+  opacity: 0;
+  padding: 0;
+  transition: opacity .2s;
+  width: 28px;
+  height: 28px; }
+  .sortable-list-button-add-item svg {
+    margin: 0 auto;
+    pointer-events: none; }
+  .sortable-list:hover .sortable-list-button-add-item {
+    opacity: 1; }
+
+@media screen and (max-width: 600px) {
+  .sortable-list-item-toolbar {
+    display: block; }
+  .sortable-list-item-wrap {
+    margin-top: 50px; }
+  .sortable-list-button-add-item {
+    opacity: 1; } }

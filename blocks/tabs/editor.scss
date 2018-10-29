@@ -1,0 +1,10 @@
+.my-blocks-ajax {
+	.editor-rich-text__inline-toolbar {
+		z-index: 99 !important;
+		left: 50px;
+		right: 50px;
+	}
+	.editor-format-toolbar {
+		z-index: 99 !important;
+	}
+}

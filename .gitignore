@@ -1,31 +1,12 @@
-node_modules
-bower_components
-release
-vendor
-.idea
-*.log
 composer.lock
 package-lock.json
+/node_modules/
+/vendor/
+/logs/
+/reports/
 
-# Project Files
-dist
-
-# Editors
-*.esproj
-*.tmproj
-*.tmproject
-tmtags
-.*.sw[a-z]
-*.un~
-Session.vim
-*.swp
-
-# Mac OSX
+# You want to have .DS_Store and other environment files/packages in your .gitignore_global configuration.
+# @see https://knowthecode.io/labs/local-development-environment-setup-mac/install-configure-git
+# I'll include it here to help out.
 .DS_Store
-._*
-.Spotlight-V100
-.Trashes
-
-# Windows
-Thumbs.db
-Desktop.ini
+.DS_Store?
