@@ -20,7 +20,7 @@ define( 'FX_BLOCKS_TABS_PATH', plugin_dir_path( __FILE__ ) );
 define( 'FX_BLOCKS_TABS_INC', FX_BLOCKS_TABS_PATH . 'includes/' );
 
 // Include files.
-require_once FX_BLOCKS_TABS_INC . 'functions/core.php';
+require_once FX_BLOCKS_TABS_INC . 'core.php';
 
 // Bootstrap.
 add_action( 'plugins_loaded', '\FxBlocksTabs\Core\setup' );

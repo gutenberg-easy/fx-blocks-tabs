@@ -43,13 +43,7 @@ function register_blocks() {
 		array(
 			'render_callback' => function( $attributes = [], $content = '' ) {
 				ob_start();
-				?>
-				<div>
-					<h3>Tabs</h3>
-					<p>Attr: <?php echo json_encode( array_map( 'esc_attr', $attributes ) ); ?></p>
-					<p>Content: <?php echo json_encode( $content ); ?></p>
-				</div>
-				<?php
+				include( FX_BLOCKS_TABS_PATH . 'blocks/tabs/template.php' );
 				return ob_get_clean();
 			},
 			'attributes' => [

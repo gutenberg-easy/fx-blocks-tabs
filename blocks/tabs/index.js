@@ -129,7 +129,7 @@ export default registerBlockType(
 						<div className="components-toolbar">
 							<IconButton
 								icon={ props.attributes.preview ? 'edit' : 'visibility' }
-								label={ props.attributes.preview ? __( 'Edit', 'fx-blocks-tabs' ) : __( 'Preview' ) }
+								label={ props.attributes.preview ? __( 'Edit', 'fx-blocks-tabs' ) : __( 'Preview', 'fx-blocks-tabs' ) }
 								onClick={ ( event ) => {
 									event.stopPropagation();
 									props.setAttributes( { preview: ! props.attributes.preview } );
