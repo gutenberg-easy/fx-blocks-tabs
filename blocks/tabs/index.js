@@ -145,11 +145,11 @@ export default registerBlockType(
 									selected={ props.attributes.display }
 									options={ [
 										{
-											label: 'Tabs',
+											label: __( 'Tabs', 'fx-blocks-tabs' ),
 											value: 'tabs',
 										},
 										{
-											label: 'List',
+											label: __( 'List', 'fx-blocks-tabs' ),
 											value: 'toggle',
 										},
 									] }
