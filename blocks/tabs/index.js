@@ -7,6 +7,11 @@ import classnames from 'classnames';
 import SortableList from '../../components/sortable-list';
 
 /**
+ * Set Locale
+ */
+wp.i18n.setLocaleData( { '': {} }, 'fx-blocks-tabs' );
+
+/**
  * Internal block libraries
  */
 const {
