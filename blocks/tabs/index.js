@@ -39,7 +39,7 @@ const {
 	ServerSideRender,
 	PanelBody,
 	PanelRow,
-	SelectControl,
+	RadioControl,
 } = wp.components;
 
 /**
@@ -62,12 +62,17 @@ export default registerBlockType(
 				type: 'bool',
 				default: false,
 			},
+			display: {
+				type: 'string',
+				default: 'tabs',
+			},
 			items: {
 				type: 'string',
+				default: null,
 			},
 		},
 		edit: props => {
-			const { className, isSelected, setAttributes, attributes: { items } } = props;
+			const { className, isSelected, setAttributes, attributes: { display, items } } = props;
 
 			const getItems = () => {
 				let curItems = items;
@@ -129,6 +134,33 @@ export default registerBlockType(
 			}
 
 			return [
+				!! props.isSelected && (
+					<InspectorControls key="inspector">
+						<PanelBody
+							title={ __( 'Display Settings' ) }
+							initialOpen={ true }
+						>
+							<PanelRow key='display'>
+								<RadioControl
+									selected={ props.attributes.display }
+									options={ [
+										{
+											label: 'Tabs',
+											value: 'tabs',
+										},
+										{
+											label: 'List',
+											value: 'toggle',
+										},
+									] }
+									onChange={ ( value ) => {
+										props.setAttributes( { display: value } )
+									} }
+								/>
+							</PanelRow>
+						</PanelBody>
+					</InspectorControls>
+				),
 				<Fragment>
 					<BlockControls>
 						<div className="components-toolbar">

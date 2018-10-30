@@ -54,8 +54,13 @@ function register_blocks() {
 					'type'    => 'bool',
 					'default' => false,
 				],
-				'items' => [
+				'display'   => [
 					'type'    => 'string',
+					'default' => 'tabs',
+				],
+				'items'     => [
+					'type'    => 'string', // Use JSON string.
+					'default' => null,
 				],
 			],
 		)
