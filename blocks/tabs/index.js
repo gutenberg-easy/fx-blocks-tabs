@@ -124,7 +124,7 @@ export default registerBlockType(
 								{ ...props }
 								editorSettings={ {
 									plugins: Editorsettings.plugins,
-									toolbar1: 'bold,italic,link,unlink',
+									toolbar1: 'editashtml,bold,italic,link,unlink',
 									inline: false,
 								} }
 								editorID={ item.id }

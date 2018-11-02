@@ -30,6 +30,7 @@ const {
 
 const {
 	IconButton,
+	TextareaControl,
 } = wp.components;
 
 /**
@@ -84,8 +85,8 @@ export default class fxClassicEditorEdit extends Component {
 		} );
 	}
 
-	onSetup( editor ) {
-		const { editorValue, attributes, setAttributes } = this.props;
+	onSetup( editor, reload = false ) {
+		const { clientId, editorID, editorValue, attributes, setAttributes } = this.props;
 		const { ref } = this;
 
 		this.editor = editor;
@@ -97,11 +98,27 @@ export default class fxClassicEditorEdit extends Component {
 			}
 		} );
 
-		editor.on( 'loadContent', () => editor.setContent( editorValue || '' ) );
+		if ( false === reload ) {
+			editor.on( 'loadContent', () => editor.setContent( editorValue || '' ) );
+		}
 
 		editor.on( 'blur', () => {
 			this.props.onBlur( editor.getContent() );
 			return false;
+		} );
+
+		editor.addButton( 'editashtml', {
+			tooltip: _x( 'Edit as HTML', 'button to expand options' ),
+			icon: 'dashicon dashicons-editor-code',
+			onClick: function() {
+				const button = this;
+				const active = ! button.active();
+				button.active( active );
+
+				jQuery( `#toggle-${ clientId }-${ editorID }` ).show();
+				wp.oldEditor.remove( `editor-${ clientId }-${ editorID }` );
+				jQuery( `#editor-${ clientId }-${ editorID }` ).addClass( 'editor-plain-text' );
+			},
 		} );
 
 		editor.addButton( 'kitchensink', {
@@ -171,12 +188,52 @@ export default class fxClassicEditorEdit extends Component {
 
 	render() {
 		const { clientId, editorID } = this.props;
+		let { editorSettings } = this.props;
+		if ( undefined === editorSettings ) {
+			editorSettings = window.wpEditorL10n.tinymce.settings;
+		}
+
 		return [
 			<div className="fx-classic-editor-wrap">
-				<div
-					key="editor"
+
+				<div id={ `toggle-${ clientId }-${ editorID }` } className="fx-classic-editor-toggle" style={ { display: 'none' } }>
+					<IconButton
+						icon='editor-code'
+						label={ __( 'Edit using visual editor', 'fx-blocks-tabs' ) }
+						onClick={ ( event ) => {
+							event.stopPropagation();
+
+							// not sure why `this.initialize` not working and need to be duplicated here.
+							const { clientId, editorID } = this.props;
+							let { editorSettings } = this.props;
+							if ( undefined === editorSettings ) {
+								editorSettings = window.wpEditorL10n.tinymce.settings;
+							}
+
+							jQuery( `#toggle-${ clientId }-${ editorID }` ).hide();
+
+							wp.oldEditor.initialize( `editor-${ clientId }-${ editorID }`, {
+								tinymce: {
+									...editorSettings,
+									fixed_toolbar_container: `#toolbar-${ clientId }-${ editorID }`,
+									setup: ( editor ) => {
+										this.onSetup( editor, true );
+										editor.on( 'loadContent', () => { return $( `editor-${ clientId }-${ editorID }` ).val() } );
+									},
+								},
+							} );
+							event.target.blur();
+						} }
+					/>
+				</div>
+
+				<TextareaControl
 					id={ `editor-${ clientId }-${ editorID }` }
-					className="wp-block-freeform block-library-rich-text__tinymce"
+					onChange={ ( value ) => {
+						this.props.onBlur( value );
+					} }
+					className="editor-plain-text"
+					rows='10'
 				/>
 			</div>
 		];
