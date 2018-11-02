@@ -94,3 +94,8 @@
     margin-top: 50px; }
   .sortable-list-button-add-item {
     opacity: 1; } }
+.wp-block-jdrf-long-form-text .wp-block-freeform {
+  padding: 8px; }
+
+.mce-btn.mce-active button, .mce-btn.mce-active:hover button, .mce-btn.mce-active i, .mce-btn.mce-active:hover i {
+  color: #23282d !important; }

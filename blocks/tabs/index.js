@@ -5,6 +5,7 @@ import './style.scss';
 import './editor.scss';
 import classnames from 'classnames';
 import SortableList from '../../components/sortable-list';
+import FxClassicEditor from '../../components/fx-classic-editor';
 
 /**
  * Set Locale
@@ -109,6 +110,7 @@ export default registerBlockType(
 			};
 
 			const renderItem = ( item ) => {
+				const Editorsettings = window.wpEditorL10n.tinymce.settings;
 				return (
 					<div className="fx-blocks-tab">
 						<Fragment>
@@ -118,11 +120,19 @@ export default registerBlockType(
 								value={ item.titleText }
 								onChange={ ( value ) => updateItem( item.id, 'titleText', value ) }
 							/>
-							<TextareaControl
-								type="text"
-								placeholder={ __( 'Content', 'fx-blocks-tabs' ) }
-								value={ item.descriptionText }
-								onChange={ ( value ) => updateItem( item.id, 'descriptionText', value ) }
+							<FxClassicEditor
+								{ ...props }
+								editorSettings={ {
+									plugins: Editorsettings.plugins,
+									toolbar1: 'bold,italic,link,unlink',
+									inline: false,
+								} }
+								editorID={ item.id }
+								editorValue={ item.descriptionText }
+								onBlur={ ( value ) => {
+									updateItem( item.id, 'descriptionText', value )
+								} }
+								attributeName={ item.descriptionText }
 							/>
 						</Fragment>
 					</div>
